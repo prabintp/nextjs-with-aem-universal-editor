@@ -21,8 +21,12 @@ const { title, descrpition, componentFragmentReference } = content || {};
     >
 
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start" 
-      data-cf-path={content?._path ?? ''}>
-      <h1>{title}</h1>
+      data-cf-path={content?._path}
+      data-cf="diriyah-home-page-content-fragment"
+      >
+      <h1 data-aue-resource={content?._path}
+        data-aue-prop="title"
+        data-aue-type="text">{title}</h1>
       <p> 
         {descrpition?.plaintext}
       </p>
