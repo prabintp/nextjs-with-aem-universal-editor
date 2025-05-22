@@ -22,7 +22,11 @@ const ImageWithCTA: React.FC<ImageWithCTAProps> = ({
   return (
     <div
       className="flex flex-col md:flex-row items-center gap-8 my-12"
+      data-aue-type="component"
+      data-aue-resource={`urn:aemconnection:${cfPath}`}
       data-cf-path={cfPath}
+      data-cf="diriyah-image-with-cta-component"
+      data-cf-field="componentImage"
     >
       {isImageLeft && (
         <div className="md:w-1/2">
