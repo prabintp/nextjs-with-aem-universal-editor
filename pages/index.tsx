@@ -12,8 +12,6 @@ interface HomeProps {
 
 export default function Home({ content }: HomeProps) {
 
-  console.log("Content from AEM:", content);
-
 const { title, descrpition, componentFragmentReference } = content || {};
   return (
     <div
@@ -21,20 +19,23 @@ const { title, descrpition, componentFragmentReference } = content || {};
     >
 
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start" 
-      data-cf-path={content?._path}
-      data-cf="diriyah-home-page-content-fragment"
+      data-aue-type="page"
+      data-aue-resource={`urn:aemconnection:${content?._path}/jcr:content/data/master`}
       >
-      <h1 data-aue-resource={content?._path}
+      <h1
         data-aue-prop="title"
-        data-aue-type="text">{title}</h1>
-      <p> 
+        data-cf-field="title"
+        className="text-4xl font-bold text-gray-900"
+
+        >{title}</h1>
+      <p className="text-2xl" data-aue-prop="descrpition" data-aue-type="text" data-aue-label="description"> 
         {descrpition?.plaintext}
       </p>
       {componentFragmentReference && componentFragmentReference.map((component, index) => (
         <ImageWithCTA
           key={component.id || index}
           title={component.title}
-          description={component.description1?.plaintext ?? ''}
+          description1={component.description1?.plaintext ?? ''}
           imageUrl={component.componentImage?.image?._publishUrl ?? ''}
           imageAlt={component.componentImage?.imageAltText ?? ''}
           variation={index % 2 === 0 ? 'left' : 'right'}
@@ -67,6 +68,7 @@ export async function getServerSideProps() {
       notFound: true,
     };
   }
+  console.log("GraphQL response:", json);
 
   const content = json?.data?.diriyahPageContentFragmentModelByPath?.item || null;
 
