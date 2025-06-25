@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
       <script src="https://universal-editor-service.adobe.io/cors.js" async></script>
-      <meta name="urn:adobe:aue:system:aemconnection" content={`aem65:${process.env.AEM_ON_PREM_HOST}`}></meta>
+      <meta name="urn:adobe:aue:system:aemconnection" content={`aem65:${process.env.AEM_ON_PREM_HOST_AUTHOR}`}></meta>
       <meta name="urn:adobe:aue:config:service" content="https://localhost:8008" />
         </Head>
       <body className="antialiased">
